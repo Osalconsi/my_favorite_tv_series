@@ -1,6 +1,16 @@
 class TvShowsController < ApplicationController
   before_action :set_tv_show, only: %i[ show edit update destroy ]
 
+
+  #nueva ruta about clase 13
+  def about
+    @about= 'Copyright 2022'
+  end
+#crewar buscador clase 13
+  def search
+    @search = TvShow.where('name LIKE %?%', params[:query])
+end
+
   # GET /tv_shows or /tv_shows.json
   def index
     @tv_shows = TvShow.all

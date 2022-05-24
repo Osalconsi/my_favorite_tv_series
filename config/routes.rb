@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :tv_shows
-  get '/tv_shows', to: 'tv_shows#index'
+  resources :tv_shows do
+    member do
+        get 'about'
+    end
+    collection do
+      get 'search'
+  end
+end
   get '/welcome', to: 'pages#welcome'
-  post '/tv_shows', to: 'tv_shows#create'
   root 'pages#welcome'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
