@@ -1,12 +1,33 @@
-<br><br>
-<h1 class="titulo-series">Listado de Series de TV</h1>
-<h3>Ingrese una serie o película nueva</h3>
+<p id="notice"><%= notice %></p>
 
-<%= form_with model: TvShow.new do |form| %>
-    <%= form.text_field :name%><br>
-    <%= form.text_area :summary%><br>
-    <%= form.date_field :release_date%><br>
-    <%= form.number_field :rating, step: '0.1' %><br>
-    <%= form.submit  "Enviar" %>
-<% end %>
-<%= link_to 'go back to welcome page', welcome_path, class: 'btn btn-primary'%>
+<h1>Tv Shows</h1>
+
+<table border='1|0' style:"background-color=#00FF00">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Summary</th>
+      <th>Release date</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tv_shows.each do |tv_show| %>
+      <tr>
+        <td><%= tv_show.name %></td>
+        <td><%= tv_show.summary %></td>
+        <td><%= tv_show.release_date %></td>
+        <td><%= tv_show.rating %></td>
+        <td><%= link_to 'Show', tv_show_path(tv_show) %></td>
+        <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
+        <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tv Show', new_tv_show_path %>
