@@ -13,7 +13,7 @@ end
 
   # GET /tv_shows or /tv_shows.json
   def index
-    @tv_shows = TvShow.all
+    @tv_shows = TvShow.page(params[:page])
   end
 
   # GET /tv_shows/1 or /tv_shows/1.json
